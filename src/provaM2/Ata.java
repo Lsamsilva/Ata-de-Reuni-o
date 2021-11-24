@@ -20,16 +20,13 @@ public class Ata {
     private Administrador administradorAta;
     private boolean status;
 
-    //construtor
-    public Ata(){
-        System.out.println("---------------------------------");
-        System.out.println("Ata de Reunião criada com sucesso!");
-        System.out.println("---------------------------------");
-    }
 
     //criar() inicializa e formata a hora quando é chamado
     public void criar (){
         this.status = true;
+        System.out.println("---------------------------------");
+        System.out.println("Ata de Reunião criada com sucesso!");
+        System.out.println("---------------------------------");
         this.dataInicio = LocalDateTime.now(); //dataInicio recebe hora atual do computador
         // formatar a data
         DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
@@ -39,6 +36,7 @@ public class Ata {
         DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
         String horaFormatada = formatterHora.format(this.dataInicio);
         System.out.println("Hora criação da Ata: " + horaFormatada);
+        System.out.println("---------------------------------");
     }
 
     Scanner scanner = new Scanner(System.in);
@@ -117,9 +115,10 @@ public class Ata {
     }
 
     public void finalizarReuniao(){
-
         this.status = false;
-
+        System.out.println("---------------------------------");
+        System.out.println("Reunião Encerrada");
+        System.out.println("                                 ");
         this.datafim = LocalDateTime.now();
         // formatar a data
         DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
@@ -128,18 +127,14 @@ public class Ata {
         // formatar a hora
         DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
         String horaFormatada = formatterHora.format(this.datafim);
-        System.out.println("Hora encerramento da Ata: " + dataFormatada);
+        System.out.println("Hora encerramento da Ata: " + horaFormatada);
 
         System.out.print("Palavras-Chave: ");
         String palavrasChave = scanner.nextLine();
         setPalavraChave(palavrasChave);
+        System.out.println("---------------------------------");
 
-        System.out.println("---------------------------------");
-        System.out.println("Ata de Reunião encerrada com sucesso!");
-        System.out.println("---------------------------------");
-        System.out.println("Data Encerramento: " + dataFormatada);
-        System.out.println("Hora Encerramento: " + horaFormatada);
-        System.out.println("Palavras Chave: " + palavrasChave);
+        String enter = scanner.nextLine();
     }
 
     ArrayList<Participante> listaDeParticipante = new ArrayList<>();
@@ -150,11 +145,11 @@ public class Ata {
         if (this.status){
             Participante participante = new Participante();
             //nome
-            System.out.println("Nome do Participante: ");
+            System.out.print("Nome do Participante: ");
             String nomeParticipante = scanner.nextLine();
             participante.setNome(nomeParticipante);
             //email
-            System.out.println("Email do Participante: ");
+            System.out.print("Email do Participante: ");
             String emailParticipante = scanner.nextLine();
             participante.setEmail(emailParticipante);
 
@@ -172,15 +167,15 @@ public class Ata {
         if (this.status){
             ParticipanteExterno externo = new ParticipanteExterno();
             //nome
-            System.out.println("Nome do Participante: ");
+            System.out.print("Nome do Participante: ");
             String nomeParticipante = scanner.nextLine();
             externo.setNome(nomeParticipante);
             //email
-            System.out.println("Email do Participante: ");
+            System.out.print("Email do Participante: ");
             String emailParticipante = scanner.nextLine();
             externo.setEmail(emailParticipante);
             //empresa
-            System.out.println("Empresa do Participante: ");
+            System.out.print("Empresa do Participante: ");
             String empresaParticipante = scanner.nextLine();
             externo.setEmpresa(empresaParticipante);
 
@@ -195,29 +190,47 @@ public class Ata {
     public void escolherAdm (){
         //ADM é da própria empresa - FUNCIONÁRIO
         System.out.println("Colaborador Administrador da Ata");
-        Administrador adm = new Administrador();
+        administradorAta = new Administrador();
         //nome
         System.out.print("Nome do Administrador: ");
         String nomeAdm = scanner.nextLine();
-        adm.setNome(nomeAdm);
+        administradorAta.setNome(nomeAdm);
         //email
         System.out.print("Email do Administrador: ");
         String emailAdm = scanner.nextLine();
-        adm.setEmail(emailAdm);
+        administradorAta.setEmail(emailAdm);
 
-        listaDeParticipante.add(adm);
+        listaDeParticipante.add(administradorAta);
+
+        String enter = scanner.nextLine();
+    }
+
+    public void emitirRelatorio(){
+        if (administradorAta != null){ //esse método só poderá ser chamado depois do método escolherAdm que instancia Administrador
+            //deve ser emitido após a finalização do método finalizarReuniao
+            System.out.println("-----RELATÓRIO-----");
+            System.out.println("Título: " + lista.get(0));
+            System.out.println("Setor: " + lista.get(1));
+            System.out.println("Pauta: " + lista.get(2));
+            System.out.println("Descrição: " + lista.get(3));
+            System.out.println("Palavras Chave: " + getPalavraChave());
+            //System.out.println("Tempo de Reunião: " );
+            System.out.println("Quantidade de Participantes: " + listaDeParticipante.size());
+        }else{
+            System.out.println("Administrador deve emitir a Ata.");
+        }
     }
 
     public void escolherEmissor (){
         //EMISSOR é da própria empresa - FUNCIONÁRIO
-        System.out.println("Emisso da Ata");
+        System.out.println("Emissor da Ata");
         Emissor emissor = new Emissor();
         //nome
-        System.out.println("Nome do Emissor: ");
+        System.out.print("Nome do Emissor: ");
         String nomeEmissor = scanner.nextLine();
         emissor.setNome(nomeEmissor);
         //email
-        System.out.println("Email do Emissor: ");
+        System.out.print("Email do Emissor: ");
         String emailEmissor = scanner.nextLine();
         emissor.setEmail(emailEmissor);
 
