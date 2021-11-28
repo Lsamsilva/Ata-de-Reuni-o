@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class Ata {
 
     private String titulo;
-    //private Date dataEmissao; provável que tenha que estar na classe Emissor
     private Participante participante;
     private LocalDateTime dataInicio;
     private LocalDateTime datafim;
@@ -23,6 +22,7 @@ public class Ata {
 
     //criar() inicializa e formata a hora quando é chamado
     public void criar (){
+
         this.status = true;
         System.out.println("---------------------------------");
         System.out.println("Ata de Reunião criada com sucesso!");
@@ -37,6 +37,7 @@ public class Ata {
         String horaFormatada = formatterHora.format(this.dataInicio);
         System.out.println("Hora criação da Ata: " + horaFormatada);
         System.out.println("---------------------------------");
+
     }
 
     Scanner scanner = new Scanner(System.in);
@@ -139,7 +140,7 @@ public class Ata {
 
     ArrayList<Participante> listaDeParticipante = new ArrayList<>();
 
-    public void adicinarParticipante (){
+    public void adicionarParticipante (){
 
         //só é possível adicionar participante se o status da Ata for true
         if (this.status){
@@ -206,7 +207,7 @@ public class Ata {
     }
 
     public void emitirRelatorio(){
-        if (administradorAta != null){ //esse método só poderá ser chamado depois do método escolherAdm que instancia Administrador
+        if (administradorAta != null && isStatus() == false){ //esse método só poderá ser chamado depois do método escolherAdm que instancia Administrador
             //deve ser emitido após a finalização do método finalizarReuniao
             System.out.println("-----RELATÓRIO-----");
             System.out.println("Título: " + lista.get(0));
@@ -217,7 +218,7 @@ public class Ata {
             //System.out.println("Tempo de Reunião: " );
             System.out.println("Quantidade de Participantes: " + listaDeParticipante.size());
         }else{
-            System.out.println("Administrador deve emitir a Ata.");
+            System.out.println("Administrador deve emitir a Ata após a finalização da reunião.");
         }
     }
 
