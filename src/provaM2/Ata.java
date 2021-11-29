@@ -24,9 +24,11 @@ public class Ata {
     public void criar (){
 
         this.status = true;
+
         System.out.println("---------------------------------");
         System.out.println("Ata de Reunião criada com sucesso!");
         System.out.println("---------------------------------");
+
         this.dataInicio = LocalDateTime.now(); //dataInicio recebe hora atual do computador
         // formatar a data
         DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
@@ -37,6 +39,8 @@ public class Ata {
         String horaFormatada = formatterHora.format(this.dataInicio);
         System.out.println("Hora criação da Ata: " + horaFormatada);
         System.out.println("---------------------------------");
+
+        String enter = scanner.nextLine();
 
     }
 
@@ -117,9 +121,11 @@ public class Ata {
 
     public void finalizarReuniao(){
         this.status = false;
+
         System.out.println("---------------------------------");
         System.out.println("Reunião Encerrada");
         System.out.println("                                 ");
+
         this.datafim = LocalDateTime.now();
         // formatar a data
         DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
@@ -144,7 +150,9 @@ public class Ata {
 
         //só é possível adicionar participante se o status da Ata for true
         if (this.status){
+
             Participante participante = new Participante();
+
             //nome
             System.out.print("Nome do Participante: ");
             String nomeParticipante = scanner.nextLine();
@@ -156,17 +164,21 @@ public class Ata {
 
             listaDeParticipante.add(participante);
 
-            //DEVE-SE MOSTRAR A LISTAGEM DE TODOS OS PARTICIPANTES
+            String enter = scanner.nextLine();
 
         }else{
             System.out.println("Não foi possível adicionar participante." +
                     "Para adicionar um participante certifique-se que a Ata foi criada.");
+
+            String enter = scanner.nextLine();
         }
     }
 
     public void adicionarParticipanteExterno(){
         if (this.status){
+
             ParticipanteExterno externo = new ParticipanteExterno();
+
             //nome
             System.out.print("Nome do Participante: ");
             String nomeParticipante = scanner.nextLine();
@@ -182,8 +194,11 @@ public class Ata {
 
             listaDeParticipante.add(externo);
 
+            String enter = scanner.nextLine();
+
         }else{
             System.out.println("Não foi possível adicionar participante.");
+            String enter = scanner.nextLine();
         }
     }
 
@@ -192,6 +207,7 @@ public class Ata {
         //ADM é da própria empresa - FUNCIONÁRIO
         System.out.println("Colaborador Administrador da Ata");
         administradorAta = new Administrador();
+
         //nome
         System.out.print("Nome do Administrador: ");
         String nomeAdm = scanner.nextLine();
@@ -207,7 +223,9 @@ public class Ata {
     }
 
     public void emitirRelatorio(){
+
         if (administradorAta != null && isStatus() == false){ //esse método só poderá ser chamado depois do método escolherAdm que instancia Administrador
+
             //deve ser emitido após a finalização do método finalizarReuniao
             System.out.println("-----RELATÓRIO-----");
             System.out.println("Título: " + lista.get(0));
@@ -217,12 +235,16 @@ public class Ata {
             System.out.println("Palavras Chave: " + getPalavraChave());
             //System.out.println("Tempo de Reunião: " );
             System.out.println("Quantidade de Participantes: " + listaDeParticipante.size());
+            String enter = scanner.nextLine();
+
         }else{
             System.out.println("Administrador deve emitir a Ata após a finalização da reunião.");
+            String enter = scanner.nextLine();
         }
     }
 
     public void escolherEmissor (){
+
         //EMISSOR é da própria empresa - FUNCIONÁRIO
         System.out.println("Emissor da Ata");
         Emissor emissor = new Emissor();
@@ -236,6 +258,7 @@ public class Ata {
         emissor.setEmail(emailEmissor);
 
         listaDeParticipante.add(emissor);
+        String enter = scanner.nextLine();
     }
 
         /*public void retirarParticipante (){

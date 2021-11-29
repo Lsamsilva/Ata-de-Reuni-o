@@ -9,7 +9,7 @@ public class Main {
         Ata a1 = new Ata();
         Emissor e1 = new Emissor();
 
-        //criar ata e mudar status ata
+        //criar ata e mudar status
         a1.criar();
         e1.mudarStatusAta();
 
@@ -21,24 +21,18 @@ public class Main {
         //editar ata
         a1.editar();
 
-        //finalizar reunião e mudar status da ata
+        //finalizar reunião e mudar status
         a1.finalizarReuniao();
         e1.mudarStatusAta();
 
         //emitir relatório
         a1.emitirRelatorio();
 
-        //mudarStatus
-        e1.mudarStatusAta();
-        e1.notificarParticipante();
-
-        //como pegar o email dos participantes na lista?
-
         //excluir (Titulo, Setor, Pauta, Descrição , Tudo)
         a1.excluir();
 
-
-
-
+        //mudarStatus e notificar
+        e1.mudarStatusAta();
+        e1.notificarParticipante();
     }
 }

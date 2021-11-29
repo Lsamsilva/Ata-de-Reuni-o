@@ -41,7 +41,7 @@ public class Emissor extends Funcionario{
                 //formatar a data
                 DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
                 String dataFormatada = formatterData.format(this.dataEmissao);
-                System.out.println("Status da Ata: " + dataFormatada);
+                System.out.println("Status da Ata: " + statusAta);
                 System.out.println("Data emissão da Ata: " + dataFormatada);
                 System.out.println("---------------------------------");
                 notificarParticipante();
@@ -58,8 +58,7 @@ public class Emissor extends Funcionario{
         System.out.println("Deseja notificar os participantes agora? Y / N ");
         String opcao = scanner.nextLine();
         if(opcao.equalsIgnoreCase("Y")){
-            System.out.println("Notificações enviadas para: ");
-            //email dos participantes
+            System.out.println("Notificações enviadas.");
         }else if (opcao.equalsIgnoreCase("N")){
             System.out.println("Notificações não enviadas.");
         }else{
