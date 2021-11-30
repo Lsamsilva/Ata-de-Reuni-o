@@ -41,7 +41,6 @@ public class Ata {
         System.out.println("---------------------------------");
 
         String enter = scanner.nextLine();
-
     }
 
     Scanner scanner = new Scanner(System.in);
@@ -76,7 +75,6 @@ public class Ata {
         lista.add(getSetor());
         lista.add(getPauta());
         lista.add(getDescricao());
-
     }
 
     public void excluir(){
@@ -120,6 +118,7 @@ public class Ata {
     }
 
     public void finalizarReuniao(){
+
         this.status = false;
 
         System.out.println("---------------------------------");
@@ -127,10 +126,12 @@ public class Ata {
         System.out.println("                                 ");
 
         this.datafim = LocalDateTime.now();
+
         // formatar a data
         DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
         String dataFormatada = formatterData.format(this.datafim);
         System.out.println("Data encerramento da Ata: " + dataFormatada);
+
         // formatar a hora
         DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
         String horaFormatada = formatterHora.format(this.datafim);
@@ -233,7 +234,6 @@ public class Ata {
             System.out.println("Pauta: " + lista.get(2));
             System.out.println("Descrição: " + lista.get(3));
             System.out.println("Palavras Chave: " + getPalavraChave());
-            //System.out.println("Tempo de Reunião: " );
             System.out.println("Quantidade de Participantes: " + listaDeParticipante.size());
             String enter = scanner.nextLine();
 
@@ -243,39 +243,6 @@ public class Ata {
         }
     }
 
-    public void escolherEmissor (){
-
-        //EMISSOR é da própria empresa - FUNCIONÁRIO
-        System.out.println("Emissor da Ata");
-        Emissor emissor = new Emissor();
-        //nome
-        System.out.print("Nome do Emissor: ");
-        String nomeEmissor = scanner.nextLine();
-        emissor.setNome(nomeEmissor);
-        //email
-        System.out.print("Email do Emissor: ");
-        String emailEmissor = scanner.nextLine();
-        emissor.setEmail(emailEmissor);
-
-        listaDeParticipante.add(emissor);
-        String enter = scanner.nextLine();
-    }
-
-        /*public void retirarParticipante (){
-        System.out.println("Remover Participante por nome.");
-        System.out.print("Digite o nome do participante: ");
-        String nomeParticipanteRemove = scanner.nextLine();
-
-        if (listaDeParticipante.contains(nomeParticipanteRemove)){
-            //remover participante correspondente
-            participante.setNome(nomeParticipanteRemove);
-            listaDeParticipante.remove(getParticipante().getNome());
-
-            System.out.println("Remoção feita com sucesso!");
-        }else{
-            System.out.println("Participante não encontrado.");
-        }
-    }*/
 
 
     //Getters e Setters

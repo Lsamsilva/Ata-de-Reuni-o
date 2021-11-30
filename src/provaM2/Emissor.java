@@ -35,6 +35,12 @@ public class Emissor extends Funcionario{
                 System.out.println("---------------------------------");
                 break;
 
+            case "Em Processo de Conclusão":
+                this.statusAta = "Em Processo de Conclusão";
+                System.out.println("Status da Ata: " + statusAta);
+                System.out.println("---------------------------------");
+                break;
+
             case "Emitida":
                 this.statusAta = "Emitida";
                 this.dataEmissao = LocalDateTime.now();
